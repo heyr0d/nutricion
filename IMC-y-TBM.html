@@ -1,0 +1,61 @@
+<!-- Este codigo crea un formulario sencillo para que un usuario introduzca la informacion necesaria para calcular su indice de masa corporal y
+su tasa metabolica basal segun la formula de Harris-Benedict -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora IMC y TMB</title>
+</head>
+<body>
+  <h1>Calculadora IMC y TMB</h1>
+  <form>
+    <label for="gender">Género:</label><br>
+    <input type="radio" id="gender" name="gender" value="male"> Hombre<br>
+    <input type="radio" id="gender" name="gender" value="female"> Mujer<br>
+    <br>
+    <label for="height">Estatura (en metros):</label><br>
+    <input type="number" id="height" name="height"><br>
+    <br>
+    <label for="weight">Peso (en kg):</label><br>
+    <input type="number" id="weight" name="weight"><br>
+    <br>
+    <label for="activity-level">Nivel de actividad física:</label><br>
+    <select id="activity-level" name="activity-level">
+      <option value="1.2">Sedentario</option>
+      <option value="1.375">Levemente activo</option>
+      <option value="1.55">Moderadamente activo</option>
+      <option value="1.725">Muy activo</option>
+      <option value="1.9">Extremadamente activo</option>
+    </select>
+    <br><br>
+    <button onclick="calculateBMI()">Calcular IMC y TMB</button>
+  </form>
+  <br>
+  <div id="bmi-result"></div>
+  <div id="tmb-result"></div>
+  <script>
+    function calculateBMI() {
+      // Obtener valores del formulario
+      var gender = document.querySelector('input[name="gender"]:checked').value;
+      var height = document.getElementById("height").value;
+      var weight = document.getElementById("weight").value;
+      var activityLevel = document.getElementById("activity-level").value;
+
+      // Calcular el IMC
+      var bmi = weight / (height * height);
+
+      // Calcular la TMB con la fórmula Harris-Benedict
+      var tmb;
+      if (gender == "male") {
+        tmb = 66 + (13.7 * weight) + (5 * height * 100) - (6.8 * age);
+      } else {
+        tmb = 655 + (9.6 * weight) + (1.8 * height * 100) - (4.7 * age);
+      }
+      tmb *= activityLevel; // Ajustar por nivel de actividad
+
+      // Mostrar resultados en la página
+      document.getElementById("bmi-result").innerHTML = "IMC: " + bmi.toFixed(2);
+      document.getElementById("tmb-result").innerHTML = "TMB: " + tmb.toFixed(2) + " calorías/día";
+    }
+  </script>
+</body>
+</html>
