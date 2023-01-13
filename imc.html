@@ -1,0 +1,24 @@
+<!-- Este codigo crea un formulario sencillo para que un usuario introduzca la informacion necesaria para calcular su indice de masa corporal-->
+<!DOCTYPE html>
+<html>
+<body>
+
+<form>
+  Peso (kg): <input type="text" id="weight"><br><br>
+  Altura (cm): <input type="text" id="height"><br><br>
+  <button onclick="calculateBMI()">Calcular IMC</button>
+</form> 
+
+<p>IMC: <span id="bmi"></span></p>
+
+<script>
+  function calculateBMI() {
+    var weight = document.getElementById("weight").value;
+    var height = document.getElementById("height").value;
+    var bmi = (weight / (height * height)) * 10000;
+    document.getElementById("bmi").innerHTML = bmi;
+  }
+</script>
+
+</body>
+</html>
